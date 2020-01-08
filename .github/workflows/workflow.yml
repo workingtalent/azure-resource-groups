@@ -6,13 +6,13 @@ env:
   AZURE_ARM_PATH: 'ARM-templates/test/template.json'
   AZURE_ARMPARA_PATH: 'ARM-templates/test/parameters.json'
   CONTRIBUTOR_ROLE_ID: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
-# Namen nieuwe DevOps groep
+# Namen DevOps groep
   Naam1: 'Amy'
   Naam2: 'Titus'
   Naam3: 'Marnix'
   Naam4: 'Loek'
   Naam5: 
-# OBJECT ID's nieuwe DevOps groep  
+# OBJECT ID's DevOps groep  
   ASSIGNEE_OBJ_ID_1: '0000000-0000000-00000000-000000'
   ASSIGNEE_OBJ_ID_2: '0000000-0000000-00000000-000000'
   ASSIGNEE_OBJ_ID_3: '0000000-0000000-00000000-000000'
@@ -32,7 +32,7 @@ jobs:
     # - run:
     #     az deployment create --name demoDeployment --location westeurope --template-file ${{ env.AZURE_ARM_PATH }} --parameters ${{ env.AZURE_ARMPARA_PATH }} 
 
-    - name: Maak een resource groep aan als naam 1 bestaat
+    - name: Maak een resource groep aan en assign contributor role als naam 1 bestaat
       run: |
         if [ -z "${{ env.Naam1 }}" ]; then
            printf "Er staat geen naam in"
@@ -41,7 +41,7 @@ jobs:
           printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_1 }} --resource-group ${{ env.env.Naam1 }}
         fi
 
-    - name: Maak een resource groep aan als naam 2 bestaat
+    - name: Maak een resource groep aan en assign contributor role als naam 2 bestaat
       run: |
         if [ -z "${{ env.Naam2 }}" ]; then
            printf "Er staat geen naam in"
@@ -50,7 +50,7 @@ jobs:
           printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_2 }} --resource-group ${{ env.env.Naam2 }}
         fi    
 
-    - name: Maak een resource groep aan als naam 3 bestaat
+    - name: Maak een resource groep aan en assign contributor role als naam 3 bestaat
       run: |
         if [ -z "${{ env.Naam3 }}" ]; then
            printf "Er staat geen naam in"
@@ -59,7 +59,7 @@ jobs:
           printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_3 }} --resource-group ${{ env.env.Naam3 }}
         fi    
 
-    - name: Maak een resource groep aan als naam 4 bestaat
+    - name: Maak een resource groep aan en assign contributor role als naam 4 bestaat
       run: |
         if [ -z "${{ env.Naam4 }}" ]; then
            printf "Er staat geen naam in"
@@ -68,7 +68,7 @@ jobs:
           printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_4 }} --resource-group ${{ env.env.Naam4 }}
         fi    
 
-    - name: Maak een resource groep aan als naam 5 bestaat
+    - name: Maak een resource groep aan en assign contributor role als naam 5 bestaat
       run: |
         if [ -z "${{ env.Naam5 }}" ]; then
            printf "Er staat geen naam in"
