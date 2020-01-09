@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+	"contentVersion": "1.0.0.1",
+	"parameters": {
+		"rgNames": {
+			"type": "array",
+			"defaultValue": [
+				"WT student 001",
+				"WT student 002",
+				"WT student 003",
+				"WT student 004",
+				"WT student 005",
+				"WT student 006"
+			]
+		},
+		"rgLocation": {
+			"type": "string",
+			"defaultValue": "West Europe"
+		}
+	},
+	"variables": {},
+	"resources": [
+		{
+			"type": "Microsoft.Resources/resourceGroups",
+			"apiVersion": "2018-05-01",
+			"location": "[parameters('rgLocation')]",
+			"name": "[parameters('rgNames')[copyIndex()]]",
+			"copy": {
+				"name": "rgNameCopy",
+				"count": "[length(parameters('rgNames'))]"
+			},
+			"properties": {}
+		}
+	],
+	"outputs": {
+		"arrayLength": {
+			"type": "int",
+			"value": "[length(parameters('rgNames'))]"
+		}
+	}
+}
