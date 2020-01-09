@@ -1,0 +1,38 @@
+name: create resource groups and assign contributors
+
+on: push
+
+env:
+  CONTRIBUTOR_ROLE_ID: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
+# Namen DevOps groep
+  Naam1: 'Amy'
+  Naam2: 'Titus'
+  Naam3: 'Marnix'
+  Naam4: 'Loek'
+# OBJECT ID's DevOps groep  
+  ASSIGNEE_OBJ_ID_1: '0000000-0000000-00000000-000000'
+  ASSIGNEE_OBJ_ID_2: '0000000-0000000-00000000-000000'
+  ASSIGNEE_OBJ_ID_3: '0000000-0000000-00000000-000000'
+  ASSIGNEE_OBJ_ID_4: '0000000-0000000-00000000-000000'
+
+jobs:
+  build-and-deploy-to-dev:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.az_sp_github }}
+
+    - name: Maak alles aan
+      run: |
+        arr1=( "Amy" "Titus" "Marnix" "Loek");
+        arr2=( 0000000-0000000-00000000-000000 0000000-0000000-00000000-000000 0000000-0000000-00000000-000000 0000000-0000000-00000000-000000 );
+        for ((i=0;i<${#arr1[@]};i++))
+        do
+          printf "az group create -l westeurope -n ${arr1[$i]}"
+          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${arr2[$i]} --resource-group ${arr1[$i]}"
+        fi
+    - name: logout
+      run: |
+        az logout
