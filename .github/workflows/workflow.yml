@@ -38,7 +38,7 @@ jobs:
            printf "Er staat geen naam in"
         else
           printf "az group create -l westeurope -n ${{ env.Naam1 }}"
-          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_1 }} --resource-group ${{ env.env.Naam1 }}
+          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_1 }} --resource-group ${{ env.Naam1 }}
         fi
 
     - name: Maak een resource groep aan en assign contributor role als naam 2 bestaat
@@ -47,7 +47,7 @@ jobs:
            printf "Er staat geen naam in"
         else
           printf "az group create -l westeurope -n ${{ env.Naam2 }}"
-          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_2 }} --resource-group ${{ env.env.Naam2 }}
+          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_2 }} --resource-group ${{ env.Naam2 }}
         fi    
 
     - name: Maak een resource groep aan en assign contributor role als naam 3 bestaat
@@ -56,7 +56,7 @@ jobs:
            printf "Er staat geen naam in"
         else
           printf "az group create -l westeurope -n ${{ env.Naam3 }}"
-          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_3 }} --resource-group ${{ env.env.Naam3 }}
+          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_3 }} --resource-group ${{ env.Naam3 }}
         fi    
 
     - name: Maak een resource groep aan en assign contributor role als naam 4 bestaat
@@ -65,7 +65,7 @@ jobs:
            printf "Er staat geen naam in"
         else
           printf "az group create -l westeurope -n ${{ env.Naam4 }}"
-          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_4 }} --resource-group ${{ env.env.Naam4 }}
+          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_4 }} --resource-group ${{ env.Naam4 }}
         fi    
 
     - name: Maak een resource groep aan en assign contributor role als naam 5 bestaat
@@ -74,7 +74,7 @@ jobs:
            printf "Er staat geen naam in"
         else
           printf "az group create -l westeurope -n ${{ env.Naam5 }}"
-          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_5 }} --resource-group ${{ env.env.Naam15 }}
+          printf "az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_5 }} --resource-group ${{ env.Naam15 }}
         fi 
 
     - name: logout
