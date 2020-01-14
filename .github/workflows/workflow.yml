@@ -26,7 +26,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.az_sp_github }}
+        creds: ${{ secrets.az_sp_github2 }}
 
     # ARM template
     # - run:
