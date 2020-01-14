@@ -24,13 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.az_sp_github }}
     # ARM template
     # - run:
     #     az deployment create --name demoDeployment --location westeurope --template-file ${{ env.AZURE_ARM_PATH }} --parameters ${{ env.AZURE_ARMPARA_PATH }} 
-    - name: az login
-      run: |
-        az login --service-principal -u ${{ secrets.az_sp_clientid }} -p ${{ secrets.az_sp_clientsecret }} --tenant ${{ secrets.az_sp_tenantid }} --allow-no-subscriptions
         
     - name: Maak een resource groep aan en assign contributor role als naam 1 bestaat
       run: |
