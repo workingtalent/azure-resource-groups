@@ -26,7 +26,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.az_sp_github }}
+        creds: ${{ secrets.bv_secret }}
     # ARM template
     # - run:
     #     az deployment create --name demoDeployment --location westeurope --template-file ${{ env.AZURE_ARM_PATH }} --parameters ${{ env.AZURE_ARMPARA_PATH }} 
