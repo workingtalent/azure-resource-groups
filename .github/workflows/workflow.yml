@@ -1,0 +1,104 @@
+name: create resource groups and assign contributors
+
+on: push
+
+env:
+  AZURE_ARM_PATH: 'ARM-templates/test/template.json'
+  AZURE_ARMPARA_PATH: 'ARM-templates/test/parameters.json'
+  CONTRIBUTOR_ROLE_ID: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
+# Namen DevOps groep
+  Naam1: 'Amy'
+  Naam2: 'Titus'
+  Naam3: 'Marnix'
+  Naam4: 'Loek'
+  Naam5:
+# OBJECT ID's DevOps groep  
+  ASSIGNEE_OBJ_ID_1: 'c22abb0c-d3a8-48e5-9922-21727a964174'
+  ASSIGNEE_OBJ_ID_2: '29ae7a69-c0fc-4a14-abc7-45e6d0064600'
+  ASSIGNEE_OBJ_ID_3: 'b3fadbe0-0a5e-40cd-9b4b-eb887757943d'
+  ASSIGNEE_OBJ_ID_4: '3af926fd-7fc3-46b7-b151-060d1e8235f0'
+  ASSIGNEE_OBJ_ID_5: '0000000-0000000-00000000-000000'
+
+jobs:
+  build-and-deploy-to-dev:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.bv_secret }}
+    # ARM template
+    # - run:
+    #     az deployment create --name demoDeployment --location westeurope --template-file ${{ env.AZURE_ARM_PATH }} --parameters ${{ env.AZURE_ARMPARA_PATH }} 
+        
+    - name: Maak een resource groep aan en assign contributor role als naam 1 bestaat
+      run: |
+        if [ -z "${{ env.Naam1 }}" ]; then
+           printf "Er staat geen naam in"
+        else
+          az group create -l westeurope -n ${{ env.Naam1 }}
+          az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_1 }} --resource-group ${{ env.Naam1 }}
+        fi
+
+    - name: Maak een resource groep aan en assign contributor role als naam 2 bestaat
+      run: |
+        if [ -z "${{ env.Naam2 }}" ]; then
+           printf "Er staat geen naam in"
+        else
+          az group create -l westeurope -n ${{ env.Naam2 }}
+          az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_2 }} --resource-group ${{ env.Naam2 }}
+        fi    
+
+    - name: Maak een resource groep aan en assign contributor role als naam 3 bestaat
+      run: |
+        if [ -z "${{ env.Naam3 }}" ]; then
+           printf "Er staat geen naam in"
+        else
+          az group create -l westeurope -n ${{ env.Naam3 }}
+          az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_3 }} --resource-group ${{ env.Naam3 }}
+        fi    
+
+    - name: Maak een resource groep aan en assign contributor role als naam 4 bestaat
+      run: |
+        if [ -z "${{ env.Naam4 }}" ]; then
+           printf "Er staat geen naam in"
+        else
+          az group create -l westeurope -n ${{ env.Naam4 }}
+          az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_4 }} --resource-group ${{ env.Naam4 }}
+        fi    
+
+    - name: Maak een resource groep aan en assign contributor role als naam 5 bestaat
+      run: |
+        if [ -z "${{ env.Naam5 }}" ]; then
+           printf "Er staat geen naam in"
+        else
+          az group create -l westeurope -n ${{ env.Naam5 }}
+          az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID_5 }} --resource-group ${{ env.Naam5 }}
+        fi 
+
+    - name: logout
+      run: |
+        az logout
+
+#DIT IS OUDE MEUK
+    # - name: create new storage account group
+    #   run: |
+    #     az storage account create -n ${namen[0]} -g Bullhorn-DEV -l westeurope --sku Standard_LRS
+
+    # - name: loop over array
+    #   run: |
+    #     for i in ${namen[@]} ;
+    #       do
+    #         printf "%s\n" "$i"
+    #       done  
+
+    # - name: create new resource group
+    #   run: |
+    #     az group create -l westeurope -n ${{ env.RESOURCE_GR_NAME }}
+
+    # - name: create new role assignment
+    #   run: |
+    #     az role assignment create --role ${{ env.CONTRIBUTOR_ROLE_ID }} --assignee-object-id ${{ env.ASSIGNEE_OBJ_ID }} --resource-group ${{ env.RESOURCE_GR_NAME }} 
+
+    # namen=( ${{ env.Naam1 }} ${{ env.Naam2 }} ${{ env.Naam3 }} ${{ env.Naam4 }} ) 
+    # printf "%s\n" "${namen[@]}"
